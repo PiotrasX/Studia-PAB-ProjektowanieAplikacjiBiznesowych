@@ -1,0 +1,88 @@
+### Pobranie wszystkich filmów
+GET http://localhost:8000/api/movies
+
+### Pobranie wszystkich filmów bez aktorów
+GET http://localhost:8000/api/movies?includeActors=false
+
+### Pobranie wszystkich filmów z aktorami
+GET http://localhost:8000/api/movies?includeActors=true
+
+### Dodanie nowego filmu
+POST http://localhost:8000/api/movies
+Content-Type: application/json
+
+{
+    "title": "Casino Royal",
+    "length": 120,
+    "year": 2006,
+    "director": "Martin Campbell"
+}
+
+### Pobranie jednego filmu
+GET http://localhost:8000/api/movies/13
+
+### Edycja danych jednego filmu
+PUT http://localhost:8000/api/movies/13
+Content-Type: application/json
+
+{
+  "title": "Casino Royale",
+  "length": 145,
+  "year": 2006,
+  "director": "Martin Campbell"
+}
+
+### Usunięcie jednego filmu
+DELETE http://localhost:8000/api/movies/13
+
+
+
+### Pobranie obsady jednego filmu
+GET http://localhost:8000/api/movies/1/actors
+
+### Ustawienie nowej obsady jednego filmu
+PUT http://localhost:8000/api/movies/1/actors
+Content-Type: application/json
+
+{
+    "actorIds": [1, 2, 3, 4, 5]
+}
+
+### Dodanie aktora do obsady jednego filmu
+PUT http://localhost:8000/api/movies/1/actors/5
+
+### Usunięcie aktora z obsady jednego filmu
+DELETE http://localhost:8000/api/movies/1/actors/5
+
+
+
+### Pobranie wszystkich aktorów
+GET http://localhost:8000/api/actors
+
+### Dodanie nowego aktora
+POST http://localhost:8000/api/actors
+Content-Type: application/json
+
+{
+    "first_name": "Rami",
+    "last_name": "Malek",
+    "birthday": "1981-05-11",
+    "height": 175
+}
+
+### Pobranie jednego aktora
+GET http://localhost:8000/api/actors/18
+
+### Edycja danych jednego aktora
+PUT http://localhost:8000/api/actors/18
+Content-Type: application/json
+
+{
+    "first_name": "Rami",
+    "last_name": "Malek",
+    "birthday": "1981-05-12",
+    "height": 175
+}
+
+### Usunięcie jednego aktora
+DELETE http://localhost:8000/api/actors/18
