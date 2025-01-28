@@ -1,0 +1,61 @@
+### Lista wszystkich hoteli
+GET http://localhost:8000/api/hotels
+
+### Dodanie nowego hotelu
+POST http://localhost:8000/api/hotels
+Content-Type: application/json
+
+{
+  "name": "Hotel Warsaw Center",
+  "stars": 4,
+  "city": "Warszawa"
+}
+
+### Wyświetlenie szczegółów hotelu o ID 1
+GET http://localhost:8000/api/hotels/1
+
+### Aktualizacja danych hotelu o ID 1
+PUT http://localhost:8000/api/hotels/1
+Content-Type: application/json
+
+{
+  "name": "Hotel Warsaw Center",
+  "stars": 5,
+  "city": "Warszawa"
+}
+
+### Usunięcie hotelu o ID 1
+DELETE http://localhost:8000/api/hotels/1
+
+
+
+### Lista wszystkich pokoi w hotelu o ID 1
+GET http://localhost:8000/api/hotels/1/rooms
+
+### Dodanie nowego pokoju do hotelu o ID 1
+POST http://localhost:8000/api/hotels/1/rooms
+Content-Type: application/json
+
+{
+  "number": 101,
+  "name": "Deluxe Suite",
+  "occupancy": 2,
+  "price": 450.00
+}
+
+### Wyświetlenie szczegółów pokoju o ID 1 w hotelu o ID 1
+GET http://localhost:8000/api/rooms/1
+
+### Aktualizacja danych pokoju o ID 1 w hotelu o ID 1
+PUT http://localhost:8000/api/rooms/1
+Content-Type: application/json
+
+{
+  "number": 101,
+  "name": "Premium Suite",
+  "occupancy": 3,
+  "price": 550.00
+}
+
+### Usunięcie pokoju o ID 1 w hotelu o ID 1
+DELETE http://localhost:8000/api/rooms/1
