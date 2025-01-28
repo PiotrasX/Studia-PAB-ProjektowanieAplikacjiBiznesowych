@@ -1,0 +1,104 @@
+{
+    "$schema": "./schemat.json",
+    "dataPoczatkowa": "2024-10-01",
+    "dataKoncowa": "2024-12-31",
+    "pociagi": [
+        {
+            "numer": 1,
+            "przewoznik": "ICC",
+            "rodzaj": "ekspres",
+            "nazwa": null,
+            "regionalny": false,
+            "stacje": [
+                {
+                    "nazwa": "Rzeszów Główny",
+                    "przyjazd": "05:21",
+                    "odjazd": "05:30"
+                },
+                {
+                    "nazwa": "Kraków Główny",
+                    "przyjazd": "06:30",
+                    "odjazd": "06:41"
+                },
+                {
+                    "nazwa": "Katowice Główny",
+                    "przyjazd": "07:34",
+                    "odjazd": "07:42"
+                }
+            ],
+            "wagony": [
+                "klasa 1",
+                "klasa 1",
+                "sypialny",
+                "restauracyjny",
+                "klasa 1"
+            ]
+        },
+        {
+            "numer": 2,
+            "przewoznik": "ICC",
+            "rodzaj": "pospieszny",
+            "nazwa": null,
+            "regionalny": false,
+            "stacje": [
+                {
+                    "nazwa": "Rzeszów Główny",
+                    "przyjazd": "06:23",
+                    "odjazd": "06:34"
+                },
+                {
+                    "nazwa": "Kraków Główny",
+                    "przyjazd": "07:49",
+                    "odjazd": "08:04"
+                },
+                {
+                    "nazwa": "Katowice Główne",
+                    "przyjazd": "09:03",
+                    "odjazd": "09:16"
+                }
+            ],
+            "wagony": [
+                "klasa 1",
+                "klasa 1",
+                "restauracyjny",
+                "leżakowy",
+                "sypialny"
+            ]
+        },
+        {
+            "numer": 3,
+            "przewoznik": "POLREGIO",
+            "rodzaj": "osobowy",
+            "nazwa": "39425",
+            "regionalny": true,
+            "stacje": [
+                {
+                    "nazwa": "Rzeszów Główny",
+                    "przyjazd": "15:39",
+                    "odjazd": "16:00"
+                },
+                {
+                    "nazwa": "Rzeszów Zachodni",
+                    "przyjazd": "16:04",
+                    "odjazd": "16:06"
+                },
+                {
+                    "nazwa": "Rzeszów Baranówka",
+                    "przyjazd": "16:10",
+                    "odjazd": "16:11"
+                },
+                {
+                    "nazwa": "Rzeszów Dworzysko",
+                    "przyjazd": "16:14",
+                    "odjazd": "16:15"
+                }
+            ],
+            "wagony": [
+                "klasa 2",
+                "klasa 2",
+                "klasa 1",
+                "restauracyjny"
+            ]
+        }
+    ]
+}
