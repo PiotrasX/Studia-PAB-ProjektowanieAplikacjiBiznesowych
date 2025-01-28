@@ -1,0 +1,35 @@
+###
+GET http://localhost:8000/api/actors
+
+###
+GET http://localhost:8000/api/actors?sort=lastName$ASC
+
+###
+GET http://localhost:8000/api/actors?sort=birthday$DESC
+
+###
+GET http://localhost:8000/api/actors?sort=firstName$ASC,lastName$DESC
+
+###
+GET http://localhost:8000/api/actors?firstName=Ben
+
+###
+GET http://localhost:8000/api/actors?firstName=Ben&lastName=Whishaw
+
+###
+GET http://localhost:8000/api/actors?sort=height$ASC&firstName=Ben
+
+###
+GET http://localhost:8000/api/actors?sort=height$ASC,birthday$ASC&firstName=Ben
+
+###
+GET http://localhost:8000/api/actors?perPage=10
+
+###
+GET http://localhost:8000/api/actors?perPage=10&page=2
+
+###
+GET http://localhost:8000/api/actors?sort=height$ASC&perPage=10&page=1
+
+###
+GET http://localhost:8000/api/actors?sort=height$ASC&firstName=Ben&perPage=2&page=1
