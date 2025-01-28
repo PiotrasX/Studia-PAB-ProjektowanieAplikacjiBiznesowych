@@ -1,0 +1,398 @@
+openapi: 3.0.3
+info:
+  version: '1.0'
+  title: 'Countries API Laravel & JWT'
+  description: Lab5 PAB
+servers:
+  - description: Laravel
+    url: http://localhost:8000/api
+paths:
+  /auth/login:
+    post:
+      tags:
+        - auth
+      summary: Get a JWT via given credentials
+      operationId: loginUser
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessToken'
+        '401':
+          description: '#/components/responses/UnauthorizedError'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Credentials'
+  /auth/me:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - auth
+      summary: Get the authentication user
+      operationId: dataUser
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserData'
+        '401':
+          description: '#/components/responses/UnauthorizedError'
+  /auth/logout:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - auth
+      summary: Log the user out (Invalidate the token)
+      operationId: logoutUser
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogoutInfo'
+        '401':
+          description: '#/components/responses/UnauthorizedError'
+  /auth/refresh:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - auth
+      summary: Refresh a token
+      operationId: refreshTokenUser
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RefreshToken'
+        '401':
+          description: '#/components/responses/UnauthorizedError'
+  /auth/forgot-password:
+    post:
+      tags:
+        - auth
+      summary: Get the token for a password reset request
+      operationId: forgotPasswordUser
+      responses:
+        '202':
+          description: Successful operation
+        '404':
+          description: User not found
+        '422':
+          description: Unprocessable content
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Email'
+        required: true
+  /auth/reset-password:
+    post:
+      tags:
+        - auth
+      summary: Reset a user's password
+      operationId: resetPasswordUser
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          description: Invalid token or data
+        '422':
+          description: Unprocessable content
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResetPassword'
+        required: true
+  /countries:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - countries
+      summary: Returns all countries
+      operationId: getCountries
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountryCollection'
+        '401':
+          description: '#/components/responses/UnauthorizedError'
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - countries
+      summary: Stores a new country
+      operationId: storeCountry
+      responses:
+        '201':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountryResource'
+        '401':
+          description: '#/components/responses/UnauthorizedError'
+        '403':
+          description: '#/components/responses/ForbiddenError'
+        '409':
+          description: '#/components/responses/ConflictError'
+        '422':
+          description: Unprocessable content
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StoreCountryRequest'
+        required: true
+  /countries/{countryId}:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - countries
+      summary: Returns a country
+      operationId: getCountry
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountryResource'
+        '401':
+          description: '#/components/responses/UnauthorizedError'
+        '404':
+          description: Country not found
+    put:
+      security:
+        - bearerAuth: []
+      tags:
+        - countries
+      summary: Updates a country
+      operationId: updateCountry
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountryResource'
+        '401':
+          description: '#/components/responses/UnauthorizedError'
+        '403':
+          description: '#/components/responses/ForbiddenError'
+        '404':
+          description: Country not found
+        '422':
+          description: Unprocessable content
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCountryRequest'
+        required: true
+    delete:
+      security:
+        - bearerAuth: []
+      tags:
+        - countries
+      summary: Deletes a country
+      operationId: deleteCountry
+      responses:
+        '204':
+          description: Successful operation
+        '401':
+          description: '#/components/responses/UnauthorizedError'
+        '403':
+          description: '#/components/responses/ForbiddenError'
+        '404':
+          description: Country not found
+    parameters:
+      - $ref: '#/components/parameters/countryId'
+components:
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
+    ForbiddenError:
+      description: This action in unauthorized
+    ConflictError:
+      description: Such a field already exists
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    countryId:
+      name: countryId
+      in: path
+      description: ID of country to use
+      required: true
+      schema:
+        type: integer
+  schemas:
+    Country:
+      type: object
+      required:
+        - name
+        - code
+        - currency
+        - area
+        - language
+      properties:
+        name:
+          type: string
+          maxLength: 50
+          example: Name
+        code:
+          type: string
+          maxLength: 3
+          example: COD
+        currency:
+          type: string
+          maxLength: 30
+          example: Currency
+        area:
+          type: integer
+          format: int32
+          minimum: 0
+          example: 100000
+        language:
+          type: string
+          maxLength: 50
+          example: language
+    CountryResource:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          example: 1
+      allOf:
+        - $ref: '#/components/schemas/Country'
+        - type: object
+    CountryCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+           $ref: '#/components/schemas/CountryResource'
+    StoreCountryRequest:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/Country'
+        - type: object
+    UpdateCountryRequest:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/Country'
+        - type: object
+    Credentials:
+      type: object
+      required:
+      - email
+      - password
+      properties:
+        email:
+          type: string
+          format: email
+          example: user@email.com
+        password:
+          type: string
+          example: pass
+    AccessToken:
+      type: object
+      properties:
+        access_token:
+          type: string
+          example: header.payload.signature
+        token_type:
+          type: string
+          example: bearer
+        expires_in:
+          type: integer
+          example: 60
+    RefreshToken:
+      type: object
+      properties:
+        access_token:
+          type: string
+          example: new.header.payload.signature
+        token_type:
+          type: string
+          example: bearer
+        expires_in:
+          type: integer
+          example: 60
+    LogoutInfo:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Successfully logged out
+    Email:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          example: user@email.com
+    UserData:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: User
+        email:
+          type: string
+          format: email
+          example: user@email.com
+        email_verified_at:
+          type: string
+          example: null
+        created_at:
+          type: string
+          format: date-time
+          example: null
+        updated_at:
+          type: string
+          format: date-time
+          example: null
+        role_id:
+          type: integer
+          example: 1
+    ResetPassword:
+      type: object
+      properties:
+        token:
+          type: string
+          example: "token"
+        email:
+          type: string
+          format: email
+          example: user@example.com
+        password:
+          type: string
+          minLength: 3
+          example: password
