@@ -8,7 +8,7 @@ Repozytorium zawiera rozwiązania zadań opracowane w ramach przedmiotu **Projek
 
 ## 📁 Struktura repozytorium
 
-- `Zadania/LabX` – Zadania realizowane podczas zajęć laboratoryjnych w ramach przedmiotu Projektowanie Aplikacji Biznesowych. Obejmowały projektowanie i dokumentowanie REST API w standardzie OpenAPI 3 (Swagger) oraz ich implementację w Laravel 11. W trakcie laboratoriów tworzono endpointy CRUD, definiowano modele danych oraz konfigurowano parametry zapytań, stosowano filtrowanie, sortowanie i paginację. Ćwiczenia obejmowały również implementację relacji one-to-many i many-to-many, walidację danych wejściowych oraz zabezpieczanie API przy użyciu JWT (Bearer Token).  
+- `Zadania/LabX` – Zadania realizowane podczas zajęć laboratoryjnych. Obejmowały projektowanie i dokumentowanie REST API w standardzie OpenAPI 3 (Swagger) oraz ich implementację w Laravel 11. W trakcie laboratoriów tworzono endpointy CRUD, definiowano modele danych oraz konfigurowano parametry zapytań, stosowano filtrowanie, sortowanie i paginację. Ćwiczenia obejmowały również implementację relacji one-to-many i many-to-many, walidację danych wejściowych oraz zabezpieczanie API przy użyciu JWT (Bearer Token).  
 
 ---
 
