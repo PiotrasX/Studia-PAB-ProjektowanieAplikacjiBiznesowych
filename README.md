@@ -1,4 +1,4 @@
-# 📘 Studia  PAB – Projektowanie Aplikacji Biznesowych
+# 📘 Studia – PAB – Projektowanie Aplikacji Biznesowych
 
 Repozytorium zawiera rozwiązania zadań opracowane w ramach przedmiotu **Projektowanie Aplikacji Biznesowych**, realizowanego na Uniwersytecie Rzeszowskim podczas piątego (5) semestru studiów inżynierskich na kierunku Informatyka.  
 
